@@ -20,7 +20,7 @@ metadata:
   name: cb-example
 spec:
   securityContext:
-    fsGroup: 1000
+    fsGroup: 1000090000
   image: couchbase/server:6.6.0
   security:
     adminSecret: cb-example-auth
