@@ -47,7 +47,7 @@ spec:
     - metadata:
         name: couchbase
       spec:
-        storageClassName: "standard-lazy-bound"
+        storageClassName: "basicnetappiscsi"
         resources:
           requests:
             storage: 10Gi
