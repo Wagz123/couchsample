@@ -17,10 +17,10 @@ spec:
 apiVersion: couchbase.com/v2
 kind: CouchbaseCluster
 metadata:
-  name: cb-example
+  name: cb-example-bryan
 spec:
   securityContext:
-    fsGroup: 1000090000
+    fsGroup: 1000590000
   image: couchbase/server:6.6.0
   security:
     adminSecret: cb-example-auth-bryan
