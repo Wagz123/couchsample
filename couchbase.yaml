@@ -42,7 +42,7 @@ spec:
     - analytics
     volumeMounts:
       default: couchbase
-      data:  couchbase
+   #   data:  couchbase
   volumeClaimTemplates:
     - metadata:
         name: couchbase
