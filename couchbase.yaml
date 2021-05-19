@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: cb-example-auth-bryan
+  name: cb-example-auth-bryan2
 type: Opaque
 data:
   username: QWRtaW5pc3RyYXRvcg==  # Administrator
@@ -17,13 +17,13 @@ spec:
 apiVersion: couchbase.com/v2
 kind: CouchbaseCluster
 metadata:
-  name: cb-example-bryan
+  name: cb-example-bryan2
 spec:
   securityContext:
     fsGroup: 1000590000
   image: couchbase/server:6.6.0
   security:
-    adminSecret: cb-example-auth-bryan
+    adminSecret: cb-example-auth-bryan2
   networking:
     exposeAdminConsole: true
     adminConsoleServices:
@@ -46,6 +46,8 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: couchbase
+        annotations:
+          trident.netapp.io/cloneFromPVC: cb-example-bryan-0000-default-01
       spec:
         storageClassName: "basicnetappiscsi"
         resources:
