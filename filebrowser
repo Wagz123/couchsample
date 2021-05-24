@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebrowser-couchbase
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      webapp: netapp-filebrowser-couchbase
+      role: file-transfer-couchbase
+  template:
+    metadata:
+      labels:
+        webapp: netapp-filebrowser-couchbase
+        role: file-transfer-couchbase
+    spec:
+      containers:
+      - name: filebrowser #default login admin/admin
+        image: filebrowser/filebrowser
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nfsvol 
+          mountPath: /srv
+      volumes:
+        - name: nfsvol
+          persistentVolumeClaim:
+            claimName: basiccouchclone
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: filebrowser-service-couchbase
+  labels:
+    webapp: netapp-filebrowser-couchbase
+    role: file-transfer-couchbase
+spec:
+  type: NodePort
+  ports:
+   # The port that this service serves on.
+    - port: 80
+      nodePort: 31176
+  # Label keys and values that must match in order to receive traffic for this service.
+  selector:
+    webapp: netapp-filebrowser-couchbase
+    role: file-transfer-couchbase
