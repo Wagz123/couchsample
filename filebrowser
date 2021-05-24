@@ -14,6 +14,8 @@ spec:
         webapp: netapp-filebrowser-couchbase
         role: file-transfer-couchbase
     spec:
+      securityContext:
+        fsGroup: 1000590000
       containers:
       - name: filebrowser #default login admin/admin
         image: filebrowser/filebrowser
